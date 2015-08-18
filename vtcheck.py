@@ -89,7 +89,6 @@ def VT_Request(key, hash, output):
 	json_response = url.json()
 	print json_response
 	response = int(json_response.get('response_code'))
-	positives = int(json_response.get('positives'))
 	if response == 0:
 		print hash + ' is not in Virus Total'
 		file = open(output,'a')
@@ -97,6 +96,7 @@ def VT_Request(key, hash, output):
 		file.write('\n')
 		file.close()
 	elif response == 1:
+		positives = int(json_response.get('positives'))
 		if positives == 0:
 			print hash + ' is not malicious'
 			file = open(output,'a')
